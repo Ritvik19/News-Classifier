@@ -1,18 +1,8 @@
-
-# coding: utf-8
-
-# In[1]:
-
-
 import requests
 import bs4
 import pandas as pd
 from IPython.display import clear_output
-
-
-# In[2]:
-
-
+import time
 urls = [
     'https://inshorts.com/en/read',
     'https://inshorts.com/en/read/national',
@@ -28,27 +18,10 @@ urls = [
     'https://inshorts.com/en/read/automobile'
 ]
 
-
-# In[3]:
-
-
-print(len(urls))
-
-
-# In[4]:
-
-
-# news = pd.DataFrame(columns=['news', 'national', 'sports', 'world', 'politics', 'technology', 'entertainment', 'hatke'])
-# news.to_csv('InshortsScraped.csv', index=False)
-
-
-# In[5]:
-
-
 news = pd.read_csv('InshortsScraped.csv')
 
 
-# In[6]:
+print(len(news))
 
 
 def scrape(news_class, news):
@@ -90,50 +63,17 @@ def scrape(news_class, news):
         print('Something went wrong')
     return news
 
-
-# In[7]:
-
-
 for i in range(12):
     print('Current Progress', i+1, '/ 12')
     news = scrape(i, news)
     clear_output(wait=True)
 print('done')
 
-
-# In[8]:
-
-
-
-
-# In[9]:
-
-
-news.head()
-
-
-# In[10]:
-
-
 news = news.reset_index()
-
-
-# In[11]:
-
-
 news = news.drop(['index'], axis=1)
-
-
-# In[12]:
-
-
 n = len(news)
-print(n)
 
-
-# In[13]:
-
-
+start = time.time()
 for i in range(n):
     for j in range(i+1, n):
         if news.iloc[i]['news'] == news.iloc[j]['news']:
@@ -144,27 +84,9 @@ for i in range(n):
             
 
 print()
-# In[14]:
-
-
-news
-
-
-# In[15]:
-
-
 news = news.drop_duplicates()
 print(len(news))
 
-
-# In[16]:
-
-
+end = time.time()
+print((end - start)/60)
 news.to_csv('InshortsScraped.csv', index=False)
-
-
-# In[ ]:
-
-
-
-
