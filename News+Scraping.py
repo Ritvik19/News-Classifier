@@ -3,6 +3,7 @@ import bs4
 import pandas as pd
 from IPython.display import clear_output
 import time
+from tqdm.auto import tqdm
 urls = [
     'https://inshorts.com/en/read',
     'https://inshorts.com/en/read/national',
@@ -17,8 +18,8 @@ urls = [
     'https://inshorts.com/en/read/science',
     'https://inshorts.com/en/read/automobile'
 ]
-
-news = pd.read_csv('InshortsScraped.csv')
+FILEPATH = "E:/Scrapped-Data/InshortsScraped.csv"
+news = pd.read_csv(FILEPATH)
 
 
 print(len(news))
@@ -74,10 +75,9 @@ news = news.drop(['index'], axis=1)
 n = len(news)
 
 start = time.time()
-for i in range(n):
+for i in tqdm(range(n)):
     for j in range(i+1, n):
         if news.iloc[i]['news'] == news.iloc[j]['news']:
-            print('-------')
             print(i, j)
             news.iloc[i][1:] = (news.iloc[i][1:]|news.iloc[j][1:]).astype('int')
             news.iloc[j][1:] = (news.iloc[i][1:]|news.iloc[j][1:]).astype('int')
@@ -89,4 +89,4 @@ print(len(news))
 
 end = time.time()
 print((end - start)/60)
-news.to_csv('InshortsScraped.csv', index=False)
+news.to_csv(FILEPATH, index=False)
