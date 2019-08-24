@@ -21,8 +21,8 @@ urls = [
 FILEPATH = "E:/Scrapped-Data/InshortsScraped.csv"
 news = pd.read_csv(FILEPATH)
 
-
-print(len(news))
+n1 = len(news)
+print(n1)
 
 
 def scrape(news_class, news):
@@ -59,24 +59,23 @@ def scrape(news_class, news):
             elif news_class == 11:
                 news_.loc[i] = [x, 0, 0, 0, 0, 1, 0, 0]
         news = pd.concat([news, news_], axis=0)
-        print(len(news))
     else:
         print('Something went wrong')
     return news
 
 for i in range(12):
-    print('Current Progress', i+1, '/ 12')
+    print('Current Progress', i+1, '/ 12', end=' -> ')
     news = scrape(i, news)
-    clear_output(wait=True)
 print('done')
 
 news = news.reset_index()
 news = news.drop(['index'], axis=1)
-n = len(news)
+n2 = len(news)
+print(n2)
 
 start = time.time()
-for i in tqdm(range(n)):
-    for j in range(i+1, n):
+for i in tqdm(range(n2)):
+    for j in range(i+1, n2):
         if news.iloc[i]['news'] == news.iloc[j]['news']:
             print(i, j)
             news.iloc[i][1:] = (news.iloc[i][1:]|news.iloc[j][1:]).astype('int')
@@ -85,8 +84,13 @@ for i in tqdm(range(n)):
 
 print()
 news = news.drop_duplicates()
-print(len(news))
+n0 = len(news)
 
 end = time.time()
-print((end - start)/60)
 news.to_csv(FILEPATH, index=False)
+print((end - start)/60, 'Minutes')
+print('Initial', n1)
+print('After Scraping', n2)
+print('Reduced', n0)
+print(n0-n1, 'New Articles')
+
