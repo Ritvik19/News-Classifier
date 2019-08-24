@@ -77,7 +77,7 @@ start = time.time()
 for i in tqdm(range(n2)):
     for j in range(i+1, n2):
         if news.iloc[i]['news'] == news.iloc[j]['news']:
-            print(i, j)
+            print('\n', i, j)
             news.iloc[i][1:] = (news.iloc[i][1:]|news.iloc[j][1:]).astype('int')
             news.iloc[j][1:] = (news.iloc[i][1:]|news.iloc[j][1:]).astype('int')
             
