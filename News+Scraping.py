@@ -72,9 +72,9 @@ news = news.reset_index()
 news = news.drop(['index'], axis=1)
 n2 = len(news)
 print(n2)
-
+beg = int(input('Iteration Start  '))
 start = time.time()
-for i in tqdm(range(n2)):
+for i in tqdm(range(beg,n2)):
     for j in range(i+1, n2):
         if news.iloc[i]['news'] == news.iloc[j]['news']:
             print('\n', i, j)
