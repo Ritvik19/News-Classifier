@@ -72,7 +72,7 @@ news = news.reset_index()
 news = news.drop(['index'], axis=1)
 n2 = len(news)
 print(n2)
-beg = int(input('Iteration Start  '))
+beg = ((n1//1000)-3)*1000 #int(input('Iteration Start  '))
 start = time.time()
 for i in tqdm(range(beg,n2)):
     for j in range(i+1, n2):
