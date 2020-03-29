@@ -3,6 +3,18 @@
 Tag News Articles with Categories to which they might belong using Machine Learning
 ___
 
+### Data Preprocessing
+
+* URLs are removed from the text
+* Text is lowercased
+* Contractions are expanded
+* Punctuations are removed from the text
+* Digits are removed
+* Extra white spaces are removed from the text
+* Stop words are removed
+* TFIDF Vectors are created (1grams)
+
+
 ### Approach 1
 
 Models Trained on Dataset available on [Kaggle](https://www.kaggle.com/rmisra/news-category-dataset) as a multiclass problem using TFIDF vectors as features
@@ -19,11 +31,11 @@ Algorithms used:
 
 Algorithm | Mean CV Score | Standard CV Score
 :---:|:---:|:--:
-Logistic Regression | 0.57 | 0.13
+Logistic Regression | 0.56 | 0.14
 Multinomial NB | 0.43 | 0.19
 Bernoulli NB | 0.55 | 0.14
 SGD Classifier 'hinge' | 0.44 | 0.17
-SGD Classifier 'log' | 0.39 | 0.18
+SGD Classifier 'log' | 0.38 | 0.18
 SGD Classifier 'perceptron' | 0.52 | 0.10
 
 The results of all models are used to give the final predictions
