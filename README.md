@@ -65,3 +65,8 @@ SGD Classifier 'log' | 0.42 | 0.03
 SGD Classifier 'perceptron' | 0.61 | 0.02
 
 The results of all models are used to give the final predictions
+___
+
+## Approach 3
+
+Association Rule Minning from preprocessed inshorts data
