@@ -79,7 +79,7 @@ def train_model_one_vs_rest(model, vects, target, labels, **kwargs):
 
     fig = plt.figure(figsize=(20, 18))
 
-    ax1 = plt.subplot2grid((3, 3), (0, 0), colspan=3)
+    ax1 = plt.subplot2grid((3, 3), (0, 0), colspan=2)
 
     ax1.plot(model_performance['loss'], label='loss per iteration')
     ax1.plot(np.ones(10)*np.mean(model_performance['loss']), '--', label='mean loss')
