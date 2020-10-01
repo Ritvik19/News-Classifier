@@ -68,24 +68,12 @@ for i in range(12):
     news = scrape(i, news)
 print('done')
 
-news = news.reset_index()
-news = news.drop(['index'], axis=1)
+news = news.reset_index(drop=True)
 n2 = len(news)
 print(n2)
-beg = ((n1//1000)-3)*1000 #int(input('Iteration Start  '))
 start = time.time()
-for i in tqdm(range(beg,n2)):
-    for j in range(i+1, n2):
-        if news.iloc[i]['news'] == news.iloc[j]['news']:
-            print('\n', i, j)
-            news.iloc[i][1:] = (news.iloc[i][1:]|news.iloc[j][1:]).astype('int')
-            news.iloc[j][1:] = (news.iloc[i][1:]|news.iloc[j][1:]).astype('int')
-            
-
-print()
-news = news.drop_duplicates()
+news = news.groupby('news').max().reset_index()
 n0 = len(news)
-
 end = time.time()
 news.to_csv(FILEPATH, index=False)
 print((end - start)/60, 'Minutes')
