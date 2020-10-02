@@ -9,9 +9,9 @@ def load_data(dataset_id):
     y = pd.read_csv(f'../data/y{dataset_id}.csv').values
     return X, y
 
-def load_vects(dataset_id):
-    X = load_npz(f'../data/X{dataset_id}.npz')
-    y = np.load(f'../data/y{dataset_id}.npy', allow_pickle=True)
+def load_text(dataset_id):
+    X = pd.read_csv(f'../data/X{dataset_id}.csv').fillna('').iloc[:, 0].values
+    y = pd.read_csv(f'../data/y{dataset_id}.csv').values
     return X, y
 
 def load_images(dataset_id, image_size):

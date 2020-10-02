@@ -1,0 +1,570 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News-Classifier</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" id="tab-1" data-toggle="tab" href="#pane-1" role="tab" aria-controls="pane-1" aria-selected="false">LGBM-1</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" id="tab-2" data-toggle="tab" href="#pane-2" role="tab" aria-controls="pane-2" aria-selected="false">LGBM-2</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" id="tab-3" data-toggle="tab" href="#pane-3" role="tab" aria-controls="pane-3" aria-selected="false">LR-1</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" id="tab-4" data-toggle="tab" href="#pane-4" role="tab" aria-controls="pane-4" aria-selected="false">LR-2</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" id="tab-5" data-toggle="tab" href="#pane-5" role="tab" aria-controls="pane-5" aria-selected="false">LR-S-1</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" id="tab-6" data-toggle="tab" href="#pane-6" role="tab" aria-controls="pane-6" aria-selected="false">LR-S-A-2</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" id="tab-7" data-toggle="tab" href="#pane-7" role="tab" aria-controls="pane-7" aria-selected="false">LR-S-B-2</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" id="tab-8" data-toggle="tab" href="#pane-8" role="tab" aria-controls="pane-8" aria-selected="false">LR-S2-2</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" id="tab-9" data-toggle="tab" href="#pane-9" role="tab" aria-controls="pane-9" aria-selected="false">RF-2</a>
+            </li>
+
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <div class="jumbotron jumbotron-fluid">
+                    <div class="container">
+                        <h1>News-Classifier</h1>
+
+<p>Tag News Articles with Categories to which they might belong using Machine Learning</p>
+
+<hr />
+
+<h3>Data Preprocessing</h3>
+
+<ul>
+<li>URLs are removed from the text</li>
+<li>Text is lowercased</li>
+<li>Contractions are expanded</li>
+<li>Punctuations are removed from the text</li>
+<li>Digits are removed</li>
+<li>Extra white spaces are removed from the text</li>
+<li>Stop words are removed</li>
+<li>TFIDF Vectors are created (1grams)</li>
+</ul>
+
+<h2>Approach 1</h2>
+
+<p>Models Trained on Dataset available on <a href="https://www.kaggle.com/rmisra/news-category-dataset">Kaggle</a> as a multiclass problem using TFIDF vectors as features</p>
+
+<p>This approach tags news articles as the following 8 tags:</p>
+
+<p>Lifestyle, Politics, Global, Miscellaneous, Entertainment, Education, Business, Sports</p>
+
+<hr />
+
+<h2>Approach 2</h2>
+
+<p>Models Trained on manually scraped data from <a href="https://inshorts.com/en/read">inshorts</a> as a multi label problem using TFIDF vectors as features</p>
+
+<p>This approach tags news articles as the following 7 tags:</p>
+
+<p>National, Sports, World, Politics, Technology, Entertainment, Hatke</p>
+
+                        <hr class="my-4">
+                        <p class="lead">This is a simple web page, for displaying the performances of the various models trained.</p>
+                        <p>Navigate using the tabs to check the performance of any model</p>
+                    </div>
+                </div>
+            </div>
+
+    <div class="tab-pane fade" id="pane-1" role="tabpanel" aria-labelledby="tab-1">
+    
+            <h1>Preprocessing Report</h1>
+            <pre>
+Pipeline(steps=[
+	('vectorizer', TfidfVectorizer())
+        ('feature_selector', SelectFromModel(estimator=DecisionTreeClassifier()))
+])
+</pre>
+<p><b>Num Features: </b>6896</p>
+
+            <img src="../performance\LGBM-1\Vocab.png" width="100%">
+            
+                <h1>Classification Report</h1>
+                <div class="row">
+<div class="col-md-6"><pre>
+              precision    recall  f1-score   support
+
+           0       0.37      0.61      0.46       764
+           1       0.41      0.54      0.47      1029
+           2       0.56      0.65      0.60      1606
+           3       0.64      0.50      0.56      2666
+           4       0.86      0.75      0.80      8598
+           5       0.44      0.52      0.48      1659
+           6       0.75      0.75      0.75      3274
+           7       0.47      0.73      0.57       489
+
+    accuracy                           0.67     20085
+   macro avg       0.56      0.63      0.59     20085
+weighted avg       0.70      0.67      0.68     20085
+
+</pre></div>
+<div class="col-md-6"><table class="table">
+<tr><th>Log loss</th><td>1.34</td></tr>
+<tr><th>AUROC</th><td>0.9056</td></tr>
+</table></div></div>
+                <h2>Confusion Matrix</h2>
+        
+                <img src="../performance\LGBM-1\Confusion-Matrix.png" maxwidth="100%">
+        
+</div>
+    <div class="tab-pane fade" id="pane-2" role="tabpanel" aria-labelledby="tab-2">
+    
+            <h1>Preprocessing Report</h1>
+            <pre>
+Pipeline(steps=[
+	('vectorizer', TfidfVectorizer())
+        ('feature_selector', SelectFromModel(estimator=DecisionTreeClassifier()))
+])
+</pre>
+<p><b>Num Features: </b>2237</p>
+
+            <img src="../performance\LGBM-2\Vocab.png" width="100%">
+            
+                <h1>Classification Report</h1>
+                <div class="row">
+<div class="col-md-6"><pre>
+              precision    recall  f1-score   support
+
+           0       0.59      0.79      0.67      1263
+           1       0.86      0.85      0.85       839
+           2       0.60      0.82      0.70       803
+           3       0.66      0.88      0.76       587
+           4       0.86      0.86      0.86      1181
+           5       0.77      0.81      0.79       859
+           6       0.06      0.51      0.11        39
+
+   micro avg       0.68      0.83      0.75      5571
+   macro avg       0.63      0.79      0.68      5571
+weighted avg       0.72      0.83      0.77      5571
+ samples avg       0.70      0.81      0.73      5571
+
+</pre></div>
+<div class="col-md-6"><table class="table">
+<tr><th>Log loss</th><td>1.0846</td></tr>
+<tr><th>AUROC</th><td>0.9341</td></tr>
+</table></div></div>
+                <h2>Confusion Matrix</h2>
+        
+                <div class="row">
+        
+                    <div class="col-md-6"><img src="../performance\LGBM-2\Confusion-Matrix-1.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\LGBM-2\Confusion-Matrix-2.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\LGBM-2\Confusion-Matrix-3.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\LGBM-2\Confusion-Matrix-4.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\LGBM-2\Confusion-Matrix-5.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\LGBM-2\Confusion-Matrix-6.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\LGBM-2\Confusion-Matrix-7.png" maxwidth="100%"></div>
+        
+                </div>
+        
+</div>
+    <div class="tab-pane fade" id="pane-3" role="tabpanel" aria-labelledby="tab-3">
+    
+            <h1>Preprocessing Report</h1>
+            <pre>
+TfidfVectorizer()
+</pre>
+<p><b>Num Features: </b>75796</p>
+
+            <img src="../performance\LR-1\Vocab.png" width="100%">
+            
+                <h1>Classification Report</h1>
+                <div class="row">
+<div class="col-md-6"><pre>
+              precision    recall  f1-score   support
+
+           0       0.48      0.65      0.55       764
+           1       0.49      0.58      0.53      1029
+           2       0.62      0.74      0.67      1606
+           3       0.66      0.60      0.63      2666
+           4       0.89      0.81      0.85      8598
+           5       0.54      0.60      0.57      1659
+           6       0.78      0.76      0.77      3274
+           7       0.63      0.80      0.70       489
+
+    accuracy                           0.73     20085
+   macro avg       0.64      0.69      0.66     20085
+weighted avg       0.75      0.73      0.74     20085
+
+</pre></div>
+<div class="col-md-6"><table class="table">
+<tr><th>Log loss</th><td>0.9881</td></tr>
+<tr><th>AUROC</th><td>0.9354</td></tr>
+</table></div></div>
+                <h2>Confusion Matrix</h2>
+        
+                <img src="../performance\LR-1\Confusion-Matrix.png" maxwidth="100%">
+        
+</div>
+    <div class="tab-pane fade" id="pane-4" role="tabpanel" aria-labelledby="tab-4">
+    
+            <h1>Preprocessing Report</h1>
+            <pre>
+TfidfVectorizer()
+</pre>
+<p><b>Num Features: </b>25175</p>
+
+            <img src="../performance\LR-2\Vocab.png" width="100%">
+            
+                <h1>Classification Report</h1>
+                <div class="row">
+<div class="col-md-6"><pre>
+              precision    recall  f1-score   support
+
+           0       0.63      0.85      0.72      1263
+           1       0.94      0.93      0.93       839
+           2       0.68      0.86      0.76       803
+           3       0.70      0.88      0.78       587
+           4       0.88      0.90      0.89      1181
+           5       0.87      0.93      0.90       859
+           6       0.13      0.33      0.19        39
+
+   micro avg       0.76      0.89      0.82      5571
+   macro avg       0.69      0.81      0.74      5571
+weighted avg       0.78      0.89      0.83      5571
+ samples avg       0.78      0.87      0.81      5571
+
+</pre></div>
+<div class="col-md-6"><table class="table">
+<tr><th>Log loss</th><td>0.8502</td></tr>
+<tr><th>AUROC</th><td>0.9631</td></tr>
+</table></div></div>
+                <h2>Confusion Matrix</h2>
+        
+                <div class="row">
+        
+                    <div class="col-md-6"><img src="../performance\LR-2\Confusion-Matrix-1.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\LR-2\Confusion-Matrix-2.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\LR-2\Confusion-Matrix-3.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\LR-2\Confusion-Matrix-4.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\LR-2\Confusion-Matrix-5.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\LR-2\Confusion-Matrix-6.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\LR-2\Confusion-Matrix-7.png" maxwidth="100%"></div>
+        
+                </div>
+        
+</div>
+    <div class="tab-pane fade" id="pane-5" role="tabpanel" aria-labelledby="tab-5">
+    
+            <h1>Preprocessing Report</h1>
+            <pre>
+Pipeline(steps=[
+	('vectorizer', TfidfVectorizer())
+        ('feature_selector', SelectFromModel(estimator=LogisticRegression()))
+])
+</pre>
+<p><b>Num Features: </b>23778</p>
+
+            <img src="../performance\LR-S-1\Vocab.png" width="100%">
+            
+                <h1>Classification Report</h1>
+                <div class="row">
+<div class="col-md-6"><pre>
+              precision    recall  f1-score   support
+
+           0       0.48      0.65      0.55       764
+           1       0.49      0.58      0.54      1029
+           2       0.62      0.74      0.67      1606
+           3       0.66      0.60      0.63      2666
+           4       0.89      0.81      0.85      8598
+           5       0.54      0.60      0.57      1659
+           6       0.78      0.76      0.77      3274
+           7       0.63      0.80      0.70       489
+
+    accuracy                           0.73     20085
+   macro avg       0.64      0.69      0.66     20085
+weighted avg       0.75      0.73      0.74     20085
+
+</pre></div>
+<div class="col-md-6"><table class="table">
+<tr><th>Log loss</th><td>0.9925</td></tr>
+<tr><th>AUROC</th><td>0.9355</td></tr>
+</table></div></div>
+                <h2>Confusion Matrix</h2>
+        
+                <img src="../performance\LR-S-1\Confusion-Matrix.png" maxwidth="100%">
+        
+</div>
+    <div class="tab-pane fade" id="pane-6" role="tabpanel" aria-labelledby="tab-6">
+    
+            <h1>Preprocessing Report</h1>
+            <pre>
+Pipeline(steps=[
+	('vectorizer', TfidfVectorizer())
+        ('feature_selector', SelectFromModel(estimator=DecisionTreeClassifier()))
+])
+</pre>
+<p><b>Num Features: </b>2245</p>
+
+            <img src="../performance\LR-S-A-2\Vocab.png" width="100%">
+            
+                <h1>Classification Report</h1>
+                <div class="row">
+<div class="col-md-6"><pre>
+              precision    recall  f1-score   support
+
+           0       0.24      1.00      0.39      1263
+           1       0.16      1.00      0.27       839
+           2       0.15      1.00      0.26       803
+           3       0.11      1.00      0.20       587
+           4       0.22      1.00      0.37      1181
+           5       0.16      1.00      0.28       859
+           6       0.01      1.00      0.01        39
+
+   micro avg       0.15      1.00      0.26      5571
+   macro avg       0.15      1.00      0.26      5571
+weighted avg       0.18      1.00      0.31      5571
+ samples avg       0.15      0.97      0.26      5571
+
+</pre></div>
+<div class="col-md-6"><table class="table">
+<tr><th>Log loss</th><td>2.1117</td></tr>
+<tr><th>AUROC</th><td>0.9211</td></tr>
+</table></div></div>
+                <h2>Confusion Matrix</h2>
+        
+                <div class="row">
+        
+                    <div class="col-md-6"><img src="../performance\LR-S-A-2\Confusion-Matrix-1.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\LR-S-A-2\Confusion-Matrix-2.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\LR-S-A-2\Confusion-Matrix-3.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\LR-S-A-2\Confusion-Matrix-4.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\LR-S-A-2\Confusion-Matrix-5.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\LR-S-A-2\Confusion-Matrix-6.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\LR-S-A-2\Confusion-Matrix-7.png" maxwidth="100%"></div>
+        
+                </div>
+        
+</div>
+    <div class="tab-pane fade" id="pane-7" role="tabpanel" aria-labelledby="tab-7">
+    
+            <h1>Preprocessing Report</h1>
+            <pre>
+Pipeline(steps=[
+	('vectorizer', TfidfVectorizer())
+        ('feature_selector', SelectFromModel(estimator=DecisionTreeClassifier()))
+])
+</pre>
+<p><b>Num Features: </b>2278</p>
+
+            <img src="../performance\LR-S-B-2\Vocab.png" width="100%">
+            
+                <h1>Classification Report</h1>
+                <div class="row">
+<div class="col-md-6"><pre>
+              precision    recall  f1-score   support
+
+           0       0.59      0.82      0.69      1263
+           1       0.85      0.89      0.87       839
+           2       0.62      0.85      0.72       803
+           3       0.65      0.91      0.76       587
+           4       0.83      0.89      0.86      1181
+           5       0.74      0.90      0.81       859
+           6       0.10      0.49      0.17        39
+
+   micro avg       0.69      0.87      0.77      5571
+   macro avg       0.63      0.82      0.70      5571
+weighted avg       0.71      0.87      0.78      5571
+ samples avg       0.73      0.85      0.77      5571
+
+</pre></div>
+<div class="col-md-6"><table class="table">
+<tr><th>Log loss</th><td>1.1518</td></tr>
+<tr><th>AUROC</th><td>0.9505</td></tr>
+</table></div></div>
+                <h2>Confusion Matrix</h2>
+        
+                <div class="row">
+        
+                    <div class="col-md-6"><img src="../performance\LR-S-B-2\Confusion-Matrix-1.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\LR-S-B-2\Confusion-Matrix-2.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\LR-S-B-2\Confusion-Matrix-3.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\LR-S-B-2\Confusion-Matrix-4.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\LR-S-B-2\Confusion-Matrix-5.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\LR-S-B-2\Confusion-Matrix-6.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\LR-S-B-2\Confusion-Matrix-7.png" maxwidth="100%"></div>
+        
+                </div>
+        
+</div>
+    <div class="tab-pane fade" id="pane-8" role="tabpanel" aria-labelledby="tab-8">
+    
+            <h1>Preprocessing Report</h1>
+            <pre>
+Pipeline(steps=[
+	('vectorizer', TfidfVectorizer())
+        ('feature_selector', SelectFromModel(estimator=DecisionTreeClassifier()))
+])
+</pre>
+<p><b>Num Features: </b>2254</p>
+
+            <img src="../performance\LR-S2-2\Vocab.png" width="100%">
+            
+                <h1>Classification Report</h1>
+                <div class="row">
+<div class="col-md-6"><pre>
+              precision    recall  f1-score   support
+
+           0       0.60      0.83      0.70      1263
+           1       0.87      0.90      0.88       839
+           2       0.62      0.86      0.72       803
+           3       0.67      0.89      0.77       587
+           4       0.85      0.89      0.87      1181
+           5       0.77      0.90      0.83       859
+           6       0.10      0.69      0.17        39
+
+   micro avg       0.69      0.87      0.77      5571
+   macro avg       0.64      0.85      0.71      5571
+weighted avg       0.73      0.87      0.79      5571
+ samples avg       0.74      0.86      0.77      5571
+
+</pre></div>
+<div class="col-md-6"><table class="table">
+<tr><th>Log loss</th><td>0.9719</td></tr>
+<tr><th>AUROC</th><td>0.9534</td></tr>
+</table></div></div>
+                <h2>Confusion Matrix</h2>
+        
+                <div class="row">
+        
+                    <div class="col-md-6"><img src="../performance\LR-S2-2\Confusion-Matrix-1.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\LR-S2-2\Confusion-Matrix-2.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\LR-S2-2\Confusion-Matrix-3.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\LR-S2-2\Confusion-Matrix-4.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\LR-S2-2\Confusion-Matrix-5.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\LR-S2-2\Confusion-Matrix-6.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\LR-S2-2\Confusion-Matrix-7.png" maxwidth="100%"></div>
+        
+                </div>
+        
+</div>
+    <div class="tab-pane fade" id="pane-9" role="tabpanel" aria-labelledby="tab-9">
+    
+            <h1>Preprocessing Report</h1>
+            <pre>
+Pipeline(steps=[
+	('vectorizer', TfidfVectorizer())
+        ('feature_selector', SelectFromModel(estimator=DecisionTreeClassifier()))
+])
+</pre>
+<p><b>Num Features: </b>2247</p>
+
+            <img src="../performance\RF-2\Vocab.png" width="100%">
+            
+                <h1>Classification Report</h1>
+                <div class="row">
+<div class="col-md-6"><pre>
+              precision    recall  f1-score   support
+
+           0       0.67      0.64      0.66      1263
+           1       0.90      0.87      0.88       839
+           2       0.75      0.67      0.71       803
+           3       0.77      0.78      0.78       587
+           4       0.87      0.87      0.87      1181
+           5       0.79      0.78      0.79       859
+           6       0.00      0.00      0.00        39
+
+   micro avg       0.79      0.76      0.77      5571
+   macro avg       0.68      0.66      0.67      5571
+weighted avg       0.78      0.76      0.77      5571
+ samples avg       0.72      0.75      0.72      5571
+
+</pre></div>
+<div class="col-md-6"><table class="table">
+<tr><th>Log loss</th><td>1.0807</td></tr>
+<tr><th>AUROC</th><td>0.9269</td></tr>
+</table></div></div>
+                <h2>Confusion Matrix</h2>
+        
+                <div class="row">
+        
+                    <div class="col-md-6"><img src="../performance\RF-2\Confusion-Matrix-1.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\RF-2\Confusion-Matrix-2.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\RF-2\Confusion-Matrix-3.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\RF-2\Confusion-Matrix-4.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\RF-2\Confusion-Matrix-5.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\RF-2\Confusion-Matrix-6.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\RF-2\Confusion-Matrix-7.png" maxwidth="100%"></div>
+        
+                </div>
+        
+</div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+
+</html>

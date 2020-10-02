@@ -1,0 +1,7 @@
+<pre>
+Pipeline(steps=[
+	('vectorizer', TfidfVectorizer())
+        ('feature_selector', SelectFromModel(estimator=DecisionTreeClassifier()))
+])
+</pre>
+<p><b>Num Features: </b>2247</p>
