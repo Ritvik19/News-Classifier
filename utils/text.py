@@ -1,6 +1,6 @@
 import numpy as np
 from sklearn.base import BaseEstimator, TransformerMixin
-
+from tqdm.auto import tqdm
 import re, nltk
 from nltk.stem import WordNetLemmatizer, PorterStemmer
 
@@ -71,9 +71,9 @@ class TextCleaner(BaseEstimator, TransformerMixin):
     
     def transform(self, X):
         transformed = []
-        for x in X:
+        for x in tqdm(X):
             transformed.append(self.clean(x))
-        return np.array(transformed)
+        return transformed
     
     def fit_transform(self, X):
         return self.transform(X)

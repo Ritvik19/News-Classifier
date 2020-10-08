@@ -16,19 +16,15 @@ logger.addHandler(file_handler)
 logger.addHandler(stream_handler)
 
 tests = [
-    ('LR', '1', 'mc', 'txt'),
-    ('LR-S', '1', 'mc', 'txt'),
-    ('LGBM', '1', 'mc', 'txt'),
-    ('RF', '1', 'mc', 'txt'),
-    ('LR', '2', 'ml', 'txt'),
-    ('LR-S2', '2', 'ml', 'txt'),
-    ('LR-S-A', '2', 'ml', 'txt'),
-    ('LR-S-B', '2', 'ml', 'txt'),
-    ('LGBM', '2', 'ml', 'txt'),
-    ('RF', '2', 'ml', 'txt'),
+    ('Baseline', 'news', 'ml', 'txt', 10),
+    ('LR', 'news', 'ml', 'txt', 10),
+    ('LR-S', 'news', 'ml', 'txt', 10),
+    ('LGBM', 'news', 'ml', 'txt', 10),
+    ('LR-H', 'news', 'ml', 'txt', 1),
+    ('LR-SH', 'news', 'ml', 'txt', 1),
 ]
 
-for model, data, problem, dtype in tests:
+for model, data, problem, dtype, n_iter in tests:
     logger.info(f'training: {model} {data}')
     exit_code = subprocess.call([
         "D:\\Users\\Ritvik\\Anaconda3\\envs\\ailab\\python.exe",
@@ -36,7 +32,8 @@ for model, data, problem, dtype in tests:
         f"-a {model}", 
         f"-d {data}",
         f"-p {problem}",
-        f"-t {dtype}"
+        f"-t {dtype}",
+        f"-n {n_iter}"
     ])
 
     subprocess.call([

@@ -1,4 +1,0 @@
-<pre>
-TfidfVectorizer()
-</pre>
-<p><b>Num Features: </b>25175</p>

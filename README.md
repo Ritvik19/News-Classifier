@@ -14,21 +14,24 @@ ___
 * Stop words are removed
 * TFIDF Vectors are created (1grams)
 
+### Approach
 
-## Approach 1
+Models Trained on manually scraped data from
+* Inshorts
+* ANI
+* India TV
+* Janta Ka Reporter
+* OpIndia
+* PostCard News
+* Swarajya
+* TFIPost
+* TheWeek
+* TheWire 
+  
+and a dataset available on [Kaggle](https://www.kaggle.com/rmisra/news-category-dataset)
 
-Models Trained on Dataset available on [Kaggle](https://www.kaggle.com/rmisra/news-category-dataset) as a multiclass problem using TFIDF vectors as features
+as a multi label problem using TFIDF vectors as features
 
-This approach tags news articles as the following 8 tags:
+This approach tags news articles as the following 9 tags:
 
-Lifestyle, Politics, Global, Miscellaneous, Entertainment, Education, Business, Sports
-
-___
-
-## Approach 2
-
-Models Trained on manually scraped data from [inshorts](https://inshorts.com/en/read) as a multi label problem using TFIDF vectors as features
-
-This approach tags news articles as the following 7 tags:
-
-National, Sports, World, Politics, Technology, Entertainment, Hatke
+    National, Sports, World, Politics, Technology, Entertainment, Business, Lifestyle, Hatke

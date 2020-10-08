@@ -32,8 +32,9 @@ def save_results_classification(classification_report, confusion_matrix, perform
         f.write('<div class="row">\n')
         f.write((f'<div class="col-md-6"><pre>\n{classification_report}\n</pre></div>\n'))
         f.write('<div class="col-md-6"><table class="table">\n')
-        f.write(f'<tr><th>Log loss</th><td>{round(np.mean(performance["log_loss"]), 4)}</td></tr>\n')
+        f.write(f'<tr><th>Accuracy</th><td>{round(np.mean(performance["accuracy"]), 4)}</td></tr>\n')
         f.write(f'<tr><th>AUROC</th><td>{round(np.mean(performance["auroc"]), 4)}</td></tr>\n')
+        f.write(f'<tr><th>Log loss</th><td>{round(np.mean(performance["log_loss"]), 4)}</td></tr>\n')
         f.write('</table></div></div>')
         
     if problem == 'ml':

@@ -30,7 +30,7 @@ stream_handler.setFormatter(formatter)
 logger.addHandler(file_handler)
 logger.addHandler(stream_handler)
 
-def train_text(dataset_id, algorithm, problem='bc'):
+def train_text(dataset_id, algorithm, problem='bc', n_iter=10):
     X, y = load_data.load_text(dataset_id)
 
     logger.debug('dataset loaded')
@@ -76,6 +76,7 @@ def train_text(dataset_id, algorithm, problem='bc'):
     
     logger.debug('training started')
         
+    iter_count = 0
     for train_indices, test_indices in tqdm(kf.split(X, y)):
         X_train = X[train_indices]
         y_train = y[train_indices]
@@ -107,11 +108,19 @@ def train_text(dataset_id, algorithm, problem='bc'):
         try:
             logger.debug(f'AUROC {performance["auroc"][-1]}')
         except:
-            logger.debug(f'Accuracy {performance["accuracy"][-1]}')
+            pass
+        logger.debug(f'Accuracy {performance["accuracy"][-1]}')
+            
         if type(model) in [GridSearchCV, RandomizedSearchCV]:
             logger.debug(model.best_params_)
             model_dispatcher.save_model(model.best_estimator_, algorithm, dataset_id)
             break
+        
+        iter_count += 1    
+        logger.debug(f'{iter_count} iterations done')
+        if iter_count == n_iter:
+            model_dispatcher.save_model(model, algorithm, dataset_id)
+            break    
         
         model_dispatcher.save_model(model, algorithm, dataset_id)        
                 
@@ -132,8 +141,9 @@ if __name__ == '__main__':
     parser.add_argument('-d', '--dataset', metavar='data', type=str, help='dataset to train on')
     parser.add_argument('-p', '--problem', metavar='problem', nargs='?', type=str, help='type of problem')
     parser.add_argument('-t', '--type', metavar='type', nargs='?', type=str, help='type of dataset')
+    parser.add_argument('-n', '--n_iter', metavar='n_iter', nargs='?', type=str, help='number of iterations to train')
     
     args = parser.parse_args()
     logger.debug(args)
 
-    train_text(args.dataset.strip(), args.algo.strip(), args.problem.strip())
+    train_text(args.dataset.strip(), args.algo.strip(), args.problem.strip(), int(args.n_iter.strip()))

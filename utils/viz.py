@@ -32,6 +32,20 @@ def univariate_continuous(data, col):
     
     sns.distplot(data['Fare'], ax=ax)
     ax.grid()
+
+def target_multiclass_distribution(data):
+    labels = data.columns
+    positive = data.sum().values
+    negative = (len(data) - data.sum().values)
+    width = 0.35
+
+    fig, ax = plt.subplots(figsize=(15, 6))
+
+    ax.bar(labels, positive, width, label='1')
+    ax.bar(labels, negative, width, bottom=positive, label='0')
+
+    ax.set_title('Category Distribution')
+    ax.legend()
     
 def bivariate_continuous_categorical(data, x, y):
     fig, ax = plt.subplots(nrows=2, figsize=(20,12))

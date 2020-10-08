@@ -1,0 +1,25 @@
+<div class="row">
+<div class="col-md-6"><pre>
+              precision    recall  f1-score   support
+
+           0       0.41      0.89      0.56      6488
+           1       0.73      0.93      0.82     14015
+           2       0.50      0.89      0.64     12186
+           3       0.66      0.81      0.73     35116
+           4       0.79      0.95      0.87      9421
+           5       0.24      0.87      0.37      4300
+           6       0.49      0.86      0.62     12763
+           7       0.16      0.82      0.27      5569
+           8       0.46      0.86      0.60     14490
+
+   micro avg       0.49      0.86      0.63    114348
+   macro avg       0.49      0.88      0.61    114348
+weighted avg       0.56      0.86      0.67    114348
+ samples avg       0.61      0.87      0.68    114348
+
+</pre></div>
+<div class="col-md-6"><table class="table">
+<tr><th>Accuracy</th><td>0.3879</td></tr>
+<tr><th>AUROC</th><td>0.9418</td></tr>
+<tr><th>Log loss</th><td>1.1133</td></tr>
+</table></div></div>
