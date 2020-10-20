@@ -25,19 +25,31 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" id="tab-3" data-toggle="tab" href="#pane-3" role="tab" aria-controls="pane-3" aria-selected="false">LR-H-news</a>
+                <a class="nav-link" id="tab-3" data-toggle="tab" href="#pane-3" role="tab" aria-controls="pane-3" aria-selected="false">LGBM2-news</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" id="tab-4" data-toggle="tab" href="#pane-4" role="tab" aria-controls="pane-4" aria-selected="false">LR-news</a>
+                <a class="nav-link" id="tab-4" data-toggle="tab" href="#pane-4" role="tab" aria-controls="pane-4" aria-selected="false">LR-H-news</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" id="tab-5" data-toggle="tab" href="#pane-5" role="tab" aria-controls="pane-5" aria-selected="false">LR-S-news</a>
+                <a class="nav-link" id="tab-5" data-toggle="tab" href="#pane-5" role="tab" aria-controls="pane-5" aria-selected="false">LR-news</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" id="tab-6" data-toggle="tab" href="#pane-6" role="tab" aria-controls="pane-6" aria-selected="false">LR-SH-news</a>
+                <a class="nav-link" id="tab-6" data-toggle="tab" href="#pane-6" role="tab" aria-controls="pane-6" aria-selected="false">LR-S-news</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" id="tab-7" data-toggle="tab" href="#pane-7" role="tab" aria-controls="pane-7" aria-selected="false">LR-S2-news</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" id="tab-8" data-toggle="tab" href="#pane-8" role="tab" aria-controls="pane-8" aria-selected="false">LR-SH-news</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" id="tab-9" data-toggle="tab" href="#pane-9" role="tab" aria-controls="pane-9" aria-selected="false">LR-SH2-news</a>
             </li>
 
         </ul>
@@ -98,7 +110,7 @@
     
             <h1>Preprocessing Report</h1>
             <pre>TfidfVectorizer(sublinear_tf=True)</pre>
-<p><b>Num Features: </b>194578</p>
+<p><b>Num Features: </b>194633</p>
 
             <img src="../performance\Baseline-news\Vocab.png" width="100%">
             
@@ -107,24 +119,25 @@
 <div class="col-md-6"><pre>
               precision    recall  f1-score   support
 
-           0       0.00      0.00      0.00      6488
-           1       0.00      0.00      0.00     14015
-           2       0.00      0.00      0.00     12186
-           3       0.00      0.00      0.00     35116
-           4       0.00      0.00      0.00      9421
-           5       0.00      0.00      0.00      4300
-           6       0.00      0.00      0.00     12763
-           7       0.00      0.00      0.00      5569
-           8       0.00      0.00      0.00     14490
+           0       0.00      0.00      0.00      6490
+           1       0.00      0.00      0.00     13980
+           2       0.00      0.00      0.00     12360
+           3       0.00      0.00      0.00     34963
+           4       0.00      0.00      0.00      9449
+           5       0.00      0.00      0.00      4366
+           6       0.00      0.00      0.00     12722
+           7       0.00      0.00      0.00      5444
+           8       0.00      0.00      0.00     14590
 
-   micro avg       0.00      0.00      0.00    114348
-   macro avg       0.00      0.00      0.00    114348
-weighted avg       0.00      0.00      0.00    114348
- samples avg       0.00      0.00      0.00    114348
+   micro avg       0.00      0.00      0.00    114364
+   macro avg       0.00      0.00      0.00    114364
+weighted avg       0.00      0.00      0.00    114364
+ samples avg       0.00      0.00      0.00    114364
 
 </pre></div>
 <div class="col-md-6"><table class="table">
 <tr><th>Accuracy</th><td>0.0016</td></tr>
+<tr><th>Max Accuracy</th><td>0.0016 (1)</td></tr>
 <tr><th>AUROC</th><td>0.5</td></tr>
 <tr><th>Log loss</th><td>2.3133</td></tr>
 </table></div></div>
@@ -159,7 +172,7 @@ weighted avg       0.00      0.00      0.00    114348
             <pre>Pipeline(steps=[('vectorizer', TfidfVectorizer(sublinear_tf=True)),
                 ('feature_selector',
                  SelectFromModel(estimator=DecisionTreeClassifier(class_weight='balanced')))])</pre>
-<p><b>Num Features: </b>7132</p>
+<p><b>Num Features: </b>7171</p>
 
             <img src="../performance\LGBM-news\Vocab.png" width="100%">
             
@@ -168,26 +181,27 @@ weighted avg       0.00      0.00      0.00    114348
 <div class="col-md-6"><pre>
               precision    recall  f1-score   support
 
-           0       0.39      0.86      0.54      6488
-           1       0.74      0.87      0.80     14015
-           2       0.46      0.84      0.60     12186
-           3       0.64      0.81      0.71     35116
-           4       0.74      0.92      0.82      9421
-           5       0.26      0.79      0.39      4300
-           6       0.47      0.80      0.59     12763
-           7       0.14      0.90      0.24      5569
-           8       0.45      0.82      0.58     14490
+           0       0.39      0.86      0.53      6490
+           1       0.74      0.87      0.80     13980
+           2       0.47      0.84      0.60     12360
+           3       0.64      0.81      0.71     34963
+           4       0.74      0.93      0.82      9449
+           5       0.26      0.79      0.39      4366
+           6       0.47      0.80      0.60     12722
+           7       0.13      0.90      0.23      5444
+           8       0.45      0.81      0.58     14590
 
-   micro avg       0.46      0.84      0.59    114348
-   macro avg       0.48      0.84      0.59    114348
-weighted avg       0.55      0.84      0.65    114348
- samples avg       0.57      0.84      0.65    114348
+   micro avg       0.46      0.84      0.59    114364
+   macro avg       0.48      0.84      0.59    114364
+weighted avg       0.55      0.84      0.65    114364
+ samples avg       0.57      0.85      0.65    114364
 
 </pre></div>
 <div class="col-md-6"><table class="table">
-<tr><th>Accuracy</th><td>0.341</td></tr>
+<tr><th>Accuracy</th><td>0.3407</td></tr>
+<tr><th>Max Accuracy</th><td>0.5105 (73)</td></tr>
 <tr><th>AUROC</th><td>0.9317</td></tr>
-<tr><th>Log loss</th><td>1.3388</td></tr>
+<tr><th>Log loss</th><td>1.3395</td></tr>
 </table></div></div>
                 <h2>Confusion Matrix</h2>
         
@@ -217,8 +231,70 @@ weighted avg       0.55      0.84      0.65    114348
     <div class="tab-pane fade" id="pane-3" role="tabpanel" aria-labelledby="tab-3">
     
             <h1>Preprocessing Report</h1>
+            <pre>Pipeline(steps=[('vectorizer', TfidfVectorizer(sublinear_tf=True)),
+                ('feature_selector',
+                 <utils.feature_selection.SelectImportantFeatures object at 0x000001D83D8C3D08>)])</pre>
+<p><b>Num Features: </b>32787</p>
+
+            <img src="../performance\LGBM2-news\Vocab.png" width="100%">
+            
+                <h1>Classification Report</h1>
+                <div class="row">
+<div class="col-md-6"><pre>
+              precision    recall  f1-score   support
+
+           0       0.38      0.86      0.53      6490
+           1       0.74      0.87      0.80     13980
+           2       0.47      0.84      0.60     12360
+           3       0.64      0.81      0.71     34963
+           4       0.74      0.93      0.82      9449
+           5       0.26      0.79      0.40      4366
+           6       0.47      0.80      0.59     12722
+           7       0.13      0.90      0.23      5444
+           8       0.45      0.81      0.58     14590
+
+   micro avg       0.46      0.84      0.59    114364
+   macro avg       0.48      0.85      0.59    114364
+weighted avg       0.55      0.84      0.65    114364
+ samples avg       0.57      0.84      0.64    114364
+
+</pre></div>
+<div class="col-md-6"><table class="table">
+<tr><th>Accuracy</th><td>0.341</td></tr>
+<tr><th>Max Accuracy</th><td>0.511 (73)</td></tr>
+<tr><th>AUROC</th><td>0.9319</td></tr>
+<tr><th>Log loss</th><td>1.3395</td></tr>
+</table></div></div>
+                <h2>Confusion Matrix</h2>
+        
+                <div class="row">
+        
+                    <div class="col-md-6"><img src="../performance\LGBM2-news\Confusion-Matrix-1.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\LGBM2-news\Confusion-Matrix-2.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\LGBM2-news\Confusion-Matrix-3.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\LGBM2-news\Confusion-Matrix-4.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\LGBM2-news\Confusion-Matrix-5.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\LGBM2-news\Confusion-Matrix-6.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\LGBM2-news\Confusion-Matrix-7.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\LGBM2-news\Confusion-Matrix-8.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\LGBM2-news\Confusion-Matrix-9.png" maxwidth="100%"></div>
+        
+                </div>
+        
+</div>
+    <div class="tab-pane fade" id="pane-4" role="tabpanel" aria-labelledby="tab-4">
+    
+            <h1>Preprocessing Report</h1>
             <pre>TfidfVectorizer(sublinear_tf=True)</pre>
-<p><b>Num Features: </b>194578</p>
+<p><b>Num Features: </b>194633</p>
 
             <img src="../performance\LR-H-news\Vocab.png" width="100%">
             
@@ -227,26 +303,27 @@ weighted avg       0.55      0.84      0.65    114348
 <div class="col-md-6"><pre>
               precision    recall  f1-score   support
 
-           0       0.48      0.85      0.62      6644
-           1       0.78      0.92      0.85     13716
-           2       0.58      0.85      0.69     12177
-           3       0.69      0.83      0.75     35249
-           4       0.84      0.95      0.89      9391
-           5       0.32      0.76      0.45      4360
-           6       0.55      0.84      0.66     12768
-           7       0.19      0.69      0.30      5506
-           8       0.48      0.83      0.61     14410
+           0       0.48      0.84      0.61      6668
+           1       0.78      0.92      0.84     13606
+           2       0.58      0.85      0.69     12221
+           3       0.69      0.83      0.75     35521
+           4       0.84      0.95      0.89      9463
+           5       0.33      0.77      0.46      4377
+           6       0.55      0.84      0.66     12797
+           7       0.19      0.68      0.30      5473
+           8       0.48      0.83      0.61     14354
 
-   micro avg       0.56      0.84      0.67    114221
-   macro avg       0.55      0.83      0.65    114221
-weighted avg       0.61      0.84      0.70    114221
- samples avg       0.65      0.85      0.71    114221
+   micro avg       0.56      0.84      0.67    114480
+   macro avg       0.55      0.83      0.65    114480
+weighted avg       0.61      0.84      0.70    114480
+ samples avg       0.65      0.85      0.71    114480
 
 </pre></div>
 <div class="col-md-6"><table class="table">
-<tr><th>Accuracy</th><td>0.4683</td></tr>
-<tr><th>AUROC</th><td>0.9424</td></tr>
-<tr><th>Log loss</th><td>0.9399</td></tr>
+<tr><th>Accuracy</th><td>0.4674</td></tr>
+<tr><th>Max Accuracy</th><td>0.5775 (81)</td></tr>
+<tr><th>AUROC</th><td>0.9418</td></tr>
+<tr><th>Log loss</th><td>0.9451</td></tr>
 </table></div></div>
                 <h2>Confusion Matrix</h2>
         
@@ -273,11 +350,11 @@ weighted avg       0.61      0.84      0.70    114221
                 </div>
         
 </div>
-    <div class="tab-pane fade" id="pane-4" role="tabpanel" aria-labelledby="tab-4">
+    <div class="tab-pane fade" id="pane-5" role="tabpanel" aria-labelledby="tab-5">
     
             <h1>Preprocessing Report</h1>
             <pre>TfidfVectorizer(sublinear_tf=True)</pre>
-<p><b>Num Features: </b>194578</p>
+<p><b>Num Features: </b>194633</p>
 
             <img src="../performance\LR-news\Vocab.png" width="100%">
             
@@ -286,26 +363,27 @@ weighted avg       0.61      0.84      0.70    114221
 <div class="col-md-6"><pre>
               precision    recall  f1-score   support
 
-           0       0.45      0.89      0.60      6488
-           1       0.78      0.94      0.85     14015
-           2       0.56      0.89      0.69     12186
-           3       0.69      0.83      0.75     35116
-           4       0.84      0.96      0.89      9421
-           5       0.29      0.84      0.44      4300
-           6       0.53      0.87      0.66     12763
-           7       0.19      0.78      0.30      5569
-           8       0.48      0.86      0.62     14490
+           0       0.45      0.89      0.60      6490
+           1       0.78      0.94      0.85     13980
+           2       0.57      0.88      0.69     12360
+           3       0.69      0.83      0.75     34963
+           4       0.83      0.96      0.89      9449
+           5       0.30      0.84      0.44      4366
+           6       0.53      0.87      0.66     12722
+           7       0.18      0.77      0.29      5444
+           8       0.49      0.87      0.62     14590
 
-   micro avg       0.54      0.87      0.67    114348
-   macro avg       0.53      0.87      0.64    114348
-weighted avg       0.60      0.87      0.70    114348
- samples avg       0.65      0.88      0.72    114348
+   micro avg       0.54      0.87      0.67    114364
+   macro avg       0.54      0.87      0.65    114364
+weighted avg       0.60      0.87      0.70    114364
+ samples avg       0.65      0.88      0.72    114364
 
 </pre></div>
 <div class="col-md-6"><table class="table">
-<tr><th>Accuracy</th><td>0.4447</td></tr>
+<tr><th>Accuracy</th><td>0.4448</td></tr>
+<tr><th>Max Accuracy</th><td>0.5887 (78)</td></tr>
 <tr><th>AUROC</th><td>0.95</td></tr>
-<tr><th>Log loss</th><td>1.0093</td></tr>
+<tr><th>Log loss</th><td>1.0094</td></tr>
 </table></div></div>
                 <h2>Confusion Matrix</h2>
         
@@ -332,13 +410,13 @@ weighted avg       0.60      0.87      0.70    114348
                 </div>
         
 </div>
-    <div class="tab-pane fade" id="pane-5" role="tabpanel" aria-labelledby="tab-5">
+    <div class="tab-pane fade" id="pane-6" role="tabpanel" aria-labelledby="tab-6">
     
             <h1>Preprocessing Report</h1>
             <pre>Pipeline(steps=[('vectorizer', TfidfVectorizer(sublinear_tf=True)),
                 ('feature_selector',
                  SelectFromModel(estimator=DecisionTreeClassifier(class_weight='balanced')))])</pre>
-<p><b>Num Features: </b>7171</p>
+<p><b>Num Features: </b>7199</p>
 
             <img src="../performance\LR-S-news\Vocab.png" width="100%">
             
@@ -347,24 +425,25 @@ weighted avg       0.60      0.87      0.70    114348
 <div class="col-md-6"><pre>
               precision    recall  f1-score   support
 
-           0       0.41      0.89      0.56      6488
-           1       0.73      0.93      0.82     14015
-           2       0.50      0.89      0.64     12186
-           3       0.66      0.81      0.73     35116
-           4       0.79      0.95      0.87      9421
-           5       0.24      0.87      0.37      4300
-           6       0.49      0.86      0.62     12763
-           7       0.16      0.82      0.27      5569
-           8       0.46      0.86      0.60     14490
+           0       0.41      0.90      0.56      6490
+           1       0.73      0.93      0.82     13980
+           2       0.51      0.88      0.65     12360
+           3       0.66      0.82      0.73     34963
+           4       0.79      0.96      0.87      9449
+           5       0.24      0.87      0.38      4366
+           6       0.49      0.86      0.63     12722
+           7       0.15      0.82      0.26      5444
+           8       0.46      0.87      0.60     14590
 
-   micro avg       0.49      0.86      0.63    114348
-   macro avg       0.49      0.88      0.61    114348
-weighted avg       0.56      0.86      0.67    114348
- samples avg       0.61      0.87      0.68    114348
+   micro avg       0.49      0.87      0.63    114364
+   macro avg       0.49      0.88      0.61    114364
+weighted avg       0.57      0.87      0.67    114364
+ samples avg       0.61      0.88      0.68    114364
 
 </pre></div>
 <div class="col-md-6"><table class="table">
-<tr><th>Accuracy</th><td>0.3879</td></tr>
+<tr><th>Accuracy</th><td>0.3872</td></tr>
+<tr><th>Max Accuracy</th><td>0.553 (78)</td></tr>
 <tr><th>AUROC</th><td>0.9418</td></tr>
 <tr><th>Log loss</th><td>1.1133</td></tr>
 </table></div></div>
@@ -393,13 +472,75 @@ weighted avg       0.56      0.86      0.67    114348
                 </div>
         
 </div>
-    <div class="tab-pane fade" id="pane-6" role="tabpanel" aria-labelledby="tab-6">
+    <div class="tab-pane fade" id="pane-7" role="tabpanel" aria-labelledby="tab-7">
+    
+            <h1>Preprocessing Report</h1>
+            <pre>Pipeline(steps=[('vectorizer', TfidfVectorizer(sublinear_tf=True)),
+                ('feature_selector',
+                 <utils.feature_selection.SelectImportantFeatures object at 0x000001D1C9F92FC8>)])</pre>
+<p><b>Num Features: </b>32707</p>
+
+            <img src="../performance\LR-S2-news\Vocab.png" width="100%">
+            
+                <h1>Classification Report</h1>
+                <div class="row">
+<div class="col-md-6"><pre>
+              precision    recall  f1-score   support
+
+           0       0.43      0.90      0.59      6490
+           1       0.77      0.94      0.84     13980
+           2       0.55      0.89      0.68     12360
+           3       0.68      0.83      0.75     34963
+           4       0.83      0.96      0.89      9449
+           5       0.28      0.86      0.42      4366
+           6       0.52      0.87      0.65     12722
+           7       0.17      0.79      0.29      5444
+           8       0.48      0.87      0.62     14590
+
+   micro avg       0.53      0.87      0.66    114364
+   macro avg       0.52      0.88      0.64    114364
+weighted avg       0.59      0.87      0.69    114364
+ samples avg       0.64      0.88      0.71    114364
+
+</pre></div>
+<div class="col-md-6"><table class="table">
+<tr><th>Accuracy</th><td>0.4276</td></tr>
+<tr><th>Max Accuracy</th><td>0.5813 (78)</td></tr>
+<tr><th>AUROC</th><td>0.9488</td></tr>
+<tr><th>Log loss</th><td>1.0307</td></tr>
+</table></div></div>
+                <h2>Confusion Matrix</h2>
+        
+                <div class="row">
+        
+                    <div class="col-md-6"><img src="../performance\LR-S2-news\Confusion-Matrix-1.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\LR-S2-news\Confusion-Matrix-2.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\LR-S2-news\Confusion-Matrix-3.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\LR-S2-news\Confusion-Matrix-4.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\LR-S2-news\Confusion-Matrix-5.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\LR-S2-news\Confusion-Matrix-6.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\LR-S2-news\Confusion-Matrix-7.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\LR-S2-news\Confusion-Matrix-8.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\LR-S2-news\Confusion-Matrix-9.png" maxwidth="100%"></div>
+        
+                </div>
+        
+</div>
+    <div class="tab-pane fade" id="pane-8" role="tabpanel" aria-labelledby="tab-8">
     
             <h1>Preprocessing Report</h1>
             <pre>Pipeline(steps=[('vectorizer', TfidfVectorizer(sublinear_tf=True)),
                 ('feature_selector',
                  SelectFromModel(estimator=DecisionTreeClassifier(class_weight='balanced')))])</pre>
-<p><b>Num Features: </b>7176</p>
+<p><b>Num Features: </b>7204</p>
 
             <img src="../performance\LR-SH-news\Vocab.png" width="100%">
             
@@ -408,26 +549,27 @@ weighted avg       0.56      0.86      0.67    114348
 <div class="col-md-6"><pre>
               precision    recall  f1-score   support
 
-           0       0.42      0.90      0.57      6644
-           1       0.72      0.93      0.81     13716
-           2       0.50      0.88      0.64     12177
-           3       0.66      0.82      0.73     35249
-           4       0.79      0.95      0.86      9391
-           5       0.24      0.86      0.38      4360
-           6       0.49      0.87      0.63     12768
-           7       0.16      0.81      0.26      5506
-           8       0.45      0.86      0.59     14410
+           0       0.41      0.90      0.56      6668
+           1       0.72      0.93      0.81     13606
+           2       0.51      0.89      0.64     12221
+           3       0.66      0.82      0.73     35521
+           4       0.79      0.95      0.86      9463
+           5       0.25      0.87      0.38      4377
+           6       0.49      0.86      0.62     12797
+           7       0.16      0.81      0.26      5473
+           8       0.45      0.86      0.59     14354
 
-   micro avg       0.49      0.87      0.62    114221
-   macro avg       0.49      0.88      0.61    114221
-weighted avg       0.56      0.87      0.67    114221
- samples avg       0.61      0.88      0.68    114221
+   micro avg       0.49      0.87      0.62    114480
+   macro avg       0.49      0.88      0.61    114480
+weighted avg       0.56      0.87      0.67    114480
+ samples avg       0.61      0.87      0.68    114480
 
 </pre></div>
 <div class="col-md-6"><table class="table">
-<tr><th>Accuracy</th><td>0.3877</td></tr>
-<tr><th>AUROC</th><td>0.9419</td></tr>
-<tr><th>Log loss</th><td>1.0875</td></tr>
+<tr><th>Accuracy</th><td>0.387</td></tr>
+<tr><th>Max Accuracy</th><td>0.5513 (80)</td></tr>
+<tr><th>AUROC</th><td>0.9413</td></tr>
+<tr><th>Log loss</th><td>1.0917</td></tr>
 </table></div></div>
                 <h2>Confusion Matrix</h2>
         
@@ -450,6 +592,68 @@ weighted avg       0.56      0.87      0.67    114221
                     <div class="col-md-6"><img src="../performance\LR-SH-news\Confusion-Matrix-8.png" maxwidth="100%"></div>
         
                     <div class="col-md-6"><img src="../performance\LR-SH-news\Confusion-Matrix-9.png" maxwidth="100%"></div>
+        
+                </div>
+        
+</div>
+    <div class="tab-pane fade" id="pane-9" role="tabpanel" aria-labelledby="tab-9">
+    
+            <h1>Preprocessing Report</h1>
+            <pre>Pipeline(steps=[('vectorizer', TfidfVectorizer(sublinear_tf=True)),
+                ('feature_selector',
+                 <utils.feature_selection.SelectImportantFeatures object at 0x000001D68E6E90C8>)])</pre>
+<p><b>Num Features: </b>32683</p>
+
+            <img src="../performance\LR-SH2-news\Vocab.png" width="100%">
+            
+                <h1>Classification Report</h1>
+                <div class="row">
+<div class="col-md-6"><pre>
+              precision    recall  f1-score   support
+
+           0       0.44      0.88      0.59      6668
+           1       0.76      0.93      0.84     13606
+           2       0.55      0.88      0.67     12221
+           3       0.68      0.83      0.75     35521
+           4       0.82      0.96      0.88      9463
+           5       0.29      0.84      0.43      4377
+           6       0.52      0.87      0.65     12797
+           7       0.18      0.76      0.29      5473
+           8       0.47      0.86      0.61     14354
+
+   micro avg       0.53      0.87      0.66    114480
+   macro avg       0.52      0.87      0.63    114480
+weighted avg       0.59      0.87      0.69    114480
+ samples avg       0.64      0.87      0.71    114480
+
+</pre></div>
+<div class="col-md-6"><table class="table">
+<tr><th>Accuracy</th><td>0.4331</td></tr>
+<tr><th>Max Accuracy</th><td>0.5766 (81)</td></tr>
+<tr><th>AUROC</th><td>0.9459</td></tr>
+<tr><th>Log loss</th><td>0.9747</td></tr>
+</table></div></div>
+                <h2>Confusion Matrix</h2>
+        
+                <div class="row">
+        
+                    <div class="col-md-6"><img src="../performance\LR-SH2-news\Confusion-Matrix-1.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\LR-SH2-news\Confusion-Matrix-2.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\LR-SH2-news\Confusion-Matrix-3.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\LR-SH2-news\Confusion-Matrix-4.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\LR-SH2-news\Confusion-Matrix-5.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\LR-SH2-news\Confusion-Matrix-6.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\LR-SH2-news\Confusion-Matrix-7.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\LR-SH2-news\Confusion-Matrix-8.png" maxwidth="100%"></div>
+        
+                    <div class="col-md-6"><img src="../performance\LR-SH2-news\Confusion-Matrix-9.png" maxwidth="100%"></div>
         
                 </div>
         

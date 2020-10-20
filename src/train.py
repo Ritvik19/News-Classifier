@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-
+import terminalplot as tplot
 import load_data, models, model_dispatcher
 from tqdm.auto import tqdm
 
@@ -29,6 +29,8 @@ stream_handler.setFormatter(formatter)
 
 logger.addHandler(file_handler)
 logger.addHandler(stream_handler)
+
+thresholds = np.linspace(0, 1, 101)
 
 def train_text(dataset_id, algorithm, problem='bc', n_iter=10):
     X, y = load_data.load_text(dataset_id)
@@ -77,7 +79,7 @@ def train_text(dataset_id, algorithm, problem='bc', n_iter=10):
     logger.debug('training started')
         
     iter_count = 0
-    for train_indices, test_indices in tqdm(kf.split(X, y)):
+    for train_indices, test_indices in kf.split(X, y):
         X_train = X[train_indices]
         y_train = y[train_indices]
 
@@ -88,7 +90,7 @@ def train_text(dataset_id, algorithm, problem='bc', n_iter=10):
         y_pred = model.predict(X_test)
 
         y_pred_ = model.predict_proba(X_test)
-
+ 
         try:
             performance['log_loss'].append(log_loss(y_test, y_pred_))
             if problem in ['mc', 'ml']:            
@@ -97,7 +99,7 @@ def train_text(dataset_id, algorithm, problem='bc', n_iter=10):
                 performance['auroc'].append(roc_auc_score(y_test, y_pred_[:, 1]))
         except:
             pass
-        performance['accuracy'].append(accuracy_score(y_test, y_pred))
+        performance['accuracy'].append([accuracy_score(y_test, (y_pred_ >= thresh).astype(bool)) for thresh in thresholds])
         
         if problem == 'ml':
             _ = multilabel_confusion_matrix(y_test, y_pred)
@@ -109,7 +111,8 @@ def train_text(dataset_id, algorithm, problem='bc', n_iter=10):
             logger.debug(f'AUROC {performance["auroc"][-1]}')
         except:
             pass
-        logger.debug(f'Accuracy {performance["accuracy"][-1]}')
+        logger.debug(f'Accuracy {performance["accuracy"][-1][50]}, threshold {50}')
+        logger.debug(f'Max Accuracy {np.max(performance["accuracy"][-1])}, threshold {np.argmax(performance["accuracy"][-1])}')
             
         if type(model) in [GridSearchCV, RandomizedSearchCV]:
             logger.debug(model.best_params_)
@@ -131,7 +134,11 @@ def train_text(dataset_id, algorithm, problem='bc', n_iter=10):
     model_dispatcher.save_results_classification(
         classification_report(y_test, y_pred), cm, performance, algorithm, dataset_id, problem=problem
     )
+    # print((np.mean(performance['accuracy'], axis=0)*100).shape)
+    logger.debug(f"Accuracy: {np.mean(performance['accuracy'], axis=0)[50]}, threshold: {50}")
+    logger.debug(f"Max Accuracy: {np.max(np.mean(performance['accuracy'], axis=0))}, threshold: {np.argmax(np.mean(performance['accuracy'], axis=0))}")
     
+    tplot.plot(thresholds.tolist(), (np.mean(performance['accuracy'], axis=0)*100).tolist())
     logger.debug('model dispatched')   
         
 if __name__ == '__main__':

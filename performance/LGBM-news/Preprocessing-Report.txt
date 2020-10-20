@@ -1,4 +1,4 @@
 <pre>Pipeline(steps=[('vectorizer', TfidfVectorizer(sublinear_tf=True)),
                 ('feature_selector',
                  SelectFromModel(estimator=DecisionTreeClassifier(class_weight='balanced')))])</pre>
-<p><b>Num Features: </b>7132</p>
+<p><b>Num Features: </b>7171</p>

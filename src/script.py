@@ -16,12 +16,15 @@ logger.addHandler(file_handler)
 logger.addHandler(stream_handler)
 
 tests = [
-    ('Baseline', 'news', 'ml', 'txt', 10),
-    ('LR', 'news', 'ml', 'txt', 10),
-    ('LR-S', 'news', 'ml', 'txt', 10),
-    ('LGBM', 'news', 'ml', 'txt', 10),
-    ('LR-H', 'news', 'ml', 'txt', 1),
-    ('LR-SH', 'news', 'ml', 'txt', 1),
+    # ('Baseline', 'news', 'ml', 'txt', 10),
+    # ('LR', 'news', 'ml', 'txt', 10),
+    # ('LR-S', 'news', 'ml', 'txt', 10),
+    # ('LGBM', 'news', 'ml', 'txt', 10),
+    # ('LR-H', 'news', 'ml', 'txt', 1),
+    # ('LR-SH', 'news', 'ml', 'txt', 1),
+    ('LGBM2', 'news', 'ml', 'txt', 10),
+    ('LR-S2', 'news', 'ml', 'txt', 10),
+    ('LR-SH2', 'news', 'ml', 'txt', 1),
 ]
 
 for model, data, problem, dtype, n_iter in tests:

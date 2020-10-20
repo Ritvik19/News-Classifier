@@ -1,0 +1,4 @@
+<pre>Pipeline(steps=[('vectorizer', TfidfVectorizer(sublinear_tf=True)),
+                ('feature_selector',
+                 <utils.feature_selection.SelectImportantFeatures object at 0x000001D83D8C3D08>)])</pre>
+<p><b>Num Features: </b>32787</p>
